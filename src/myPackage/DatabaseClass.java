@@ -52,7 +52,6 @@ public class DatabaseClass {
 			ResultSet rs=st.executeQuery(read);
 			rs.next();
 			int partyId=rs.getInt("partyId");
-			System.out.print("Party " +partyId);
 			String sql2="INSERT into userlogin(userLoginId,password,partyId)"
 					+ "Values(?,?,?)";
 			pstm=conn.prepareStatement(sql2);
@@ -68,7 +67,23 @@ public class DatabaseClass {
 	
 
 	public boolean loginValidate(String userName, String userPass) throws SQLException {
-		return true;
+		
+		String sql="SELECT * FROM userlogin\n"
+	            + "WHERE userLoginId=?";
+	    PreparedStatement pstm=conn.prepareStatement(sql);
+	    pstm.setString(1,userName);
+	    ResultSet rs=pstm.executeQuery();
+	    String uname;
+	    String pass;
+	    while(rs.next()){
+	        uname=rs.getString("userLoginId");
+	        pass=rs.getString("password");
+	        
+	            if( pass.equals(userPass)){
+	                  return true;
+	             } 
+	        }//end while
+	         return false;
 	}
 
 	

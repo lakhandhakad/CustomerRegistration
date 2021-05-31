@@ -6,7 +6,16 @@
 <jsp:useBean id="pDAO" class="myPackage.DatabaseClass" scope="page" />
 <%
 	if (request.getParameter("page").toString().equals("login")) {
-		
+		if (pDAO.loginValidate(request.getParameter("username").toString(),
+				request.getParameter("password").toString())) {
+			session.setAttribute("userStatus", "1");
+			session.setAttribute("userId",(request.getParameter("username")));
+			response.sendRedirect("");
+
+		} else {
+			request.getSession().setAttribute("userStatus", "-1");
+			response.sendRedirect("login.jsp");
+		}
 		
 
 	} else if (request.getParameter("page").toString().equals("register")) {
