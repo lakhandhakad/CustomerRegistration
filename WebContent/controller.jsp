@@ -10,10 +10,10 @@
 				request.getParameter("password").toString())) {
 			session.setAttribute("userStatus", "1");
 			session.setAttribute("userId",(request.getParameter("username")));
-			response.sendRedirect("");
+			response.sendRedirect("profile.jsp");
 
 		} else {
-			request.getSession().setAttribute("userStatus", "-1");
+			request.getSession().setAttribute("userStatus", "-2");
 			response.sendRedirect("login.jsp");
 		}
 		

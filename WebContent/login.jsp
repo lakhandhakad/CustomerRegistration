@@ -37,7 +37,7 @@
 		<%
 			if (request.getSession().getAttribute("userStatus") != null) {
 				System.out.println("its called");
-				if (request.getSession().getAttribute("userStatus").equals("-1")) {
+				if (request.getSession().getAttribute("userStatus").equals("-2")) {
 					System.out.println("now inside");
 		%>
 		<script>
