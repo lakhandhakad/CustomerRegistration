@@ -9,19 +9,19 @@
 <body>
       	
           <%
-          String s=null;
+          String userStatus=null;
          try
          { 
-        	 s=session.getAttribute("userStatus").toString();
-        	 System.out.print(s);
-             if(s.equals("-1"))
+        	 userStatus=session.getAttribute("userStatus").toString();
+        	 System.out.print(userStatus);
+             if(userStatus.equals("-1"))
              { %>
      	    <h1>Not Authorized</h1>
      	    <a href="http://localhost:8080/CustomerRegistration/login.jsp">Login First</a> 
    <% 
      	  
        }
-       System.out.print(s);
+       
 	   
          }
          catch(NullPointerException e){
@@ -35,16 +35,16 @@
           
          try
          { 
-        	 s=session.getAttribute("userStatus").toString();
-        	 System.out.print(s);
-             if(s.equals("1"))
+        	 userStatus=session.getAttribute("userStatus").toString();
+        	
+             if(userStatus.equals("1"))
              { %>
      	    <h1>Hello User</h1>
      	    <a href="http://localhost:8080/CustomerRegistration/login.jsp " <%session.setAttribute("userStatus", "-1"); %>>Logout</a>
    <% 
      	  
        }
-       System.out.print(s);
+       
 	   
          }
          catch(NullPointerException e){
