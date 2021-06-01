@@ -32,8 +32,20 @@
 
 		pDAO.addNewUser(fName, lName, uName, pass, contactNo, city, address,state,zip);
 	} 
+    
 
 	 else if (request.getParameter("page").toString().equals("logout")) {
 		
 	}
+	 
+	 else if (request.getParameter("page").toString().equals("search")) {
+	    String fName=request.getParameter("firstname");
+	    ArrayList nameList=pDAO.search(fName);
+	    System.out.print("Controller "+nameList.get(0));
+	    session.setAttribute("findlist", nameList);
+	    request.setAttribute("nameList", nameList);
+	    response.sendRedirect("searchResult.jsp");
+	 }
+
+	 
 %>

@@ -39,11 +39,13 @@
         	
              if(userStatus.equals("1"))
              { %>
+            
      	    <h1>Hello User</h1>
+     	    <a href="http://localhost:8080/CustomerRegistration/search.jsp">Search User</a>
      	    <a href="http://localhost:8080/CustomerRegistration/login.jsp " <%session.setAttribute("userStatus", "-1"); %>>Logout</a>
    <% 
      	  
-       }
+         }
        
 	   
          }

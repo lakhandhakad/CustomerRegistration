@@ -5,9 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.eclipse.jdt.internal.compiler.ast.ReturnStatement;
+
+import com.mysql.fabric.Response;
 import com.mysql.jdbc.Statement;
 
 
@@ -71,6 +75,7 @@ public class DatabaseClass {
 		String sql="SELECT * FROM userlogin\n"
 	            + "WHERE userLoginId=?";
 	    PreparedStatement pstm=conn.prepareStatement(sql);
+	    
 	    pstm.setString(1,userName);
 	    ResultSet rs=pstm.executeQuery();
 	    String uname;
@@ -86,7 +91,28 @@ public class DatabaseClass {
 	         return false;
 	}
 
-	
+	public ArrayList search(String fName) {
+		ArrayList searchlist=new ArrayList();
+		try
+		{
+			String sql=" select firstName,lastName from Party where firstName Like '%"+fName+"%'";
+		System.out.print(sql);
+		PreparedStatement pstm=conn.prepareStatement(sql);
+		
+		ResultSet rSet=pstm.executeQuery();
+		while(rSet.next())
+		{    
+			System.out.print(rSet.getString("firstName").toString());
+			searchlist.add(rSet.getString("firstName"));
+		}
+		}
+		catch (SQLException sq) {
+			// TODO: handle exception
+			sq.printStackTrace();
+		}
+		return searchlist;
+		
+	}
 		
 
 
