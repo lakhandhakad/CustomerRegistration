@@ -31,7 +31,43 @@ public class DatabaseClass {
 
 	
 
+	public ArrayList getAllUsers() {
+		ArrayList allUsers=new ArrayList();
+		String sql="select partyId,firstName,lastName from Party";
+		
+		try {
+			PreparedStatement pstm=conn.prepareStatement(sql);
+			ResultSet rSet=pstm.executeQuery();
+			while(rSet.next()) {
+				allUsers.add(rSet.getInt("partyId"));
+				allUsers.add(rSet.getString("firstName"));
+				allUsers.add(rSet.getString("lastName"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return allUsers;
+	}
 	
+	public void delUser(int pId) {
+		String sql="delete from userlogin where partyId=?";
+		try {
+			//delete from userlogin table
+			PreparedStatement pstm=conn.prepareStatement(sql);
+			pstm.setInt(1, pId);
+			pstm.executeUpdate();
+			//delete from Party table
+		    sql="delete from Party where partyId=?";
+		    pstm=conn.prepareStatement(sql);
+		    pstm.setInt(1, pId);
+		    pstm.executeUpdate();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 
 

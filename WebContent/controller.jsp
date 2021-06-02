@@ -31,6 +31,7 @@
 		String zip= request.getParameter("zip");
 
 		pDAO.addNewUser(fName, lName, uName, pass, contactNo, city, address,state,zip);
+		response.sendRedirect("login.jsp");
 	} 
     
 
@@ -45,6 +46,14 @@
 	    session.setAttribute("findlist", nameList);
 	    request.setAttribute("nameList", nameList);
 	    response.sendRedirect("searchResult.jsp");
+	 }
+
+	 else if(request.getParameter("page").toString().equals("profile")) {
+		 if (request.getParameter("operation").toString().equals("del")) {
+				pDAO.delUser(Integer.parseInt(request.getParameter("partyId").toString()));
+				response.sendRedirect("profile.jsp");
+			}
+
 	 }
 
 	 
